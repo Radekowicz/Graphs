@@ -50,7 +50,7 @@ void AdjacencyMatrix::read(std::string location) {
 	string word;
 
 	stream >> word;
-	int vertexAmount = std::stoi(word);
+	vertexAmount = std::stoi(word);
 	cout << "Vertex amount: " <<  vertexAmount << endl;
 
 	//create matrix

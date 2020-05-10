@@ -138,13 +138,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AdjacencyList.cpp" />
     <ClCompile Include="AdjacencyMatrix.cpp" />
     <ClCompile Include="Edge.cpp" />
+    <ClCompile Include="List.cpp" />
+    <ClCompile Include="ListElement.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdjacencyList.h" />
     <ClInclude Include="AdjacencyMatrix.h" />
     <ClInclude Include="Edge.h" />
+    <ClInclude Include="List.h" />
+    <ClInclude Include="ListElement.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
