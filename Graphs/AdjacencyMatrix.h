@@ -5,8 +5,9 @@
 
 class AdjacencyMatrix
 {
-private:
+public:
 	int vertexAmount;
+	int edgeAmount;
 	int** matrix;
 public:
 	AdjacencyMatrix();
@@ -16,5 +17,6 @@ public:
 	void fillMatrixWithZeros();
 	void read(std::string location);
 	void print();
+	int toQueue(int i, int j);
 };
 

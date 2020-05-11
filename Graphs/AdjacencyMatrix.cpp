@@ -60,7 +60,7 @@ void AdjacencyMatrix::read(std::string location) {
 	fillMatrixWithZeros();
 
 	stream >> word;
-	int edgeAmount = std::stoi(word);
+	edgeAmount = std::stoi(word);
 	cout << "Edge amount: " << edgeAmount << endl;
 
 	int loop = std::stoi(word);
@@ -87,4 +87,10 @@ void AdjacencyMatrix::print() {
 		cout << endl;
 	}
 }
+
+int AdjacencyMatrix::toQueue(int i, int j) {
+	return(matrix[i][j]);
+}
+
+
 

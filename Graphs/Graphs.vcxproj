@@ -140,17 +140,23 @@
   <ItemGroup>
     <ClCompile Include="AdjacencyList.cpp" />
     <ClCompile Include="AdjacencyMatrix.cpp" />
+    <ClCompile Include="DSStruct.cpp" />
     <ClCompile Include="Edge.cpp" />
+    <ClCompile Include="Kruskal.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="ListElement.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Queue.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdjacencyList.h" />
     <ClInclude Include="AdjacencyMatrix.h" />
+    <ClInclude Include="DSStruct.h" />
     <ClInclude Include="Edge.h" />
+    <ClInclude Include="Kruskal.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="ListElement.h" />
+    <ClInclude Include="Queue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

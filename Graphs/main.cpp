@@ -1,6 +1,6 @@
+#include "Kruskal.h"
 #include "AdjacencyMatrix.h"
 #include "AdjacencyList.h"
-
 
 #include<iostream>
 #include<fstream>
@@ -9,17 +9,19 @@ using namespace std;
 
 int main() {
 	
-	AdjacencyMatrix matrix = AdjacencyMatrix();
-	matrix.read("C:\\Users\\radek\\OneDrive\\Pulpit\\graph.txt");
-	cout << endl;
-	matrix.print();
+	
 	
 	cout << endl;
 
+	Kruskal kruskal = Kruskal();
+
+
+	/*
 	AdjacencyList list = AdjacencyList();
 	list.read("C:\\Users\\radek\\OneDrive\\Pulpit\\graph.txt");
 	cout << endl;
 	list.print();
+	*/
 	
 
 	return 0;
