@@ -1,18 +1,27 @@
 #pragma once
-#include<string>
+#include "AdjacencyMatrix.h"
+#include "AdjacencyList.h"
+#include "DSStruct.h"
 #include "Queue.h"
+#include "List.h"
 
 
 class Kruskal
 {
-private:
-	Queue queue;
+public:
+	int vertexAmount;
+	int edgeAmountmstMST;
+	int weightMST;
+
+	Queue* queue;
+	DSStruct* set;
+	AdjacencyList* listMST;
+	AdjacencyMatrix* matrixMST;
+
 
 public:
-
-	Kruskal();
-
-	void read(std::string);
-
+	Kruskal(AdjacencyMatrix* matrix);
+	void makeQueue(AdjacencyMatrix* matrix);
+	void makeMST(AdjacencyMatrix* matrix);
 };
 

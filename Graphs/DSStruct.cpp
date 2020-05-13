@@ -57,12 +57,12 @@ int DSStruct::FindSet(int v)
 
 // Łączy ze sobą zbiory z v i u
 //-----------------------------
-void DSStruct::UnionSets(Edge e)
+void DSStruct::UnionSets(Edge* edge)
 {
     int root1, root2;
 
-    root1 = FindSet(e.v1);   // Wyznaczamy korzeń drzewa z węzłem u
-    root2 = FindSet(e.v2);   // Wyznaczamy korzeń drzewa z węzłem v
+    root1 = FindSet(edge->v1);   // Wyznaczamy korzeń drzewa z węzłem u
+    root2 = FindSet(edge->v2);   // Wyznaczamy korzeń drzewa z węzłem v
     if (root1 != root2)           // Korzenie muszą być różne
     {
         if (tableOfNodes[root1].rank > tableOfNodes[root2].rank) // Porównujemy rangi drzew

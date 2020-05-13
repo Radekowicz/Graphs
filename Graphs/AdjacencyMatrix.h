@@ -11,6 +11,7 @@ public:
 	int** matrix;
 public:
 	AdjacencyMatrix();
+	AdjacencyMatrix(int vertexAmount);
 	~AdjacencyMatrix();
 	void createMatrix(int vertexAmount);
 	void addEdge(Edge* edge);

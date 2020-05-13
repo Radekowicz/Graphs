@@ -40,5 +40,7 @@ public:
 
 	void read2(std::string location);
 
+	ListElement* getElement(int n);
+
 };
 

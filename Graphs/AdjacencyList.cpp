@@ -7,16 +7,33 @@
 using namespace std;
 
 AdjacencyList::AdjacencyList() {
+}
 
+AdjacencyList::AdjacencyList(int vertexAmount) {
+	createList(vertexAmount);
 }
 
 void AdjacencyList::createList(int vertexAmount) {
 	list = new List[vertexAmount];
+	this->vertexAmount = vertexAmount;
+
 }
 
 void AdjacencyList::addEdge(Edge* edge) {
 	list[edge->v1].push(edge->v2, edge->weight);
 	list[edge->v2].push(edge->v1, edge->weight);
+}
+
+void AdjacencyList::addEdgeOne(Edge* edge) {
+	list[edge->v1].push(edge->v2, edge->weight);
+}
+
+void AdjacencyList::deleteDuplicates() {
+
+}
+
+ListElement* AdjacencyList::getNeighbours(int n) {
+	return list[n].getElement(0);
 }
 
 
@@ -51,7 +68,6 @@ void AdjacencyList::read(std::string location) {
 
 		//add esges to matrix
 		addEdge(new Edge(v1, v2, weight));
-		cout << v1 << " " << v2 << " " << weight << endl;
 	}
 }
 
@@ -59,5 +75,11 @@ void AdjacencyList::print() {
 	for (int i = 0; i < vertexAmount; ++i) {
 		cout << "Vertex " << i << ": ";
 		list[i].display();
+	}
+}
+
+void AdjacencyList::printList() {
+	Edge* edge;
+	for (int i = 0; i < vertexAmount; ++i) {
 	}
 }

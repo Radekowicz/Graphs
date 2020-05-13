@@ -1,88 +1,70 @@
-#include "Kruskal.h"
+﻿#include "Kruskal.h"
 #include "Queue.h"
 #include "DSStruct.h"
 #include "AdjacencyList.h"
 #include "AdjacencyMatrix.h"
-#include <iostream>
-#include<fstream>
-#include<string>
+#include<iostream>
+
 
 
 using namespace std;
 
-Kruskal::Kruskal() {
+Kruskal::Kruskal(AdjacencyMatrix* matrix) {
+	vertexAmount = matrix->vertexAmount;
+	set = new DSStruct(vertexAmount); 
+	weightMST = 0;
+}
 
-	AdjacencyMatrix matrix = AdjacencyMatrix();
-	matrix.read("C:\\Users\\radek\\OneDrive\\Pulpit\\graph.txt");
-	cout << endl;
-	matrix.print();
-	cout << endl;
+void Kruskal::makeQueue(AdjacencyMatrix* matrix) {
+	queue = new Queue(2 * matrix->edgeAmount);
 
-
-	Queue queue = Queue(matrix.edgeAmount);
-
-	Edge edge;
-	for (int i = 0; i < matrix.vertexAmount; ++i) {
-		for (int j = 0; j < matrix.vertexAmount; ++j) {
-
-			int edgeWeight = matrix.toQueue(i, j);
-			edge = Edge(i, j, edgeWeight);
-
-			if (edgeWeight != 0 && !queue.edgeExists(Edge(j, i, edgeWeight))) {
-				queue.push(edge);
-				edge.toString();
+	Edge* edge;
+	for (int i = 0; i < matrix->vertexAmount; ++i) {
+		for (int j = 0; j < matrix->vertexAmount; ++j) {
+			int edgeWeight = matrix->toQueue(i, j);
+			edge = new Edge(i, j, edgeWeight);
+			if (edgeWeight != 0) {
+				queue->push(edge);
+				//edge->toString();
 			}
-
 		}
 	}
-
-
-	cout << endl << endl;
-
-	queue.print();
-
 	cout << endl;
-
-	for (int i = 0; i < matrix.edgeAmount; ++i) {
-		queue.getFirstEdge().toString();
-		queue.pop();
-	}
-
-
 }
 
-void Kruskal::read(std::string location) {
-	ifstream stream;
-	stream.open(location);
+void Kruskal::makeMST(AdjacencyMatrix* matrix) {
+	listMST = new AdjacencyList(vertexAmount);
+	matrixMST = new AdjacencyMatrix(vertexAmount);
 
-	if (!stream.is_open()) {
-		exit(EXIT_FAILURE);
+
+	for (int i = 0; i < vertexAmount; ++i) {
+		set->MakeSet(i);
 	}
-	string word;
 
-	stream >> word;
-	int vertexAmount = std::stoi(word);
-	cout << "Vertex amount: " << vertexAmount << endl;
+	makeQueue(matrix);	//tworzymy posortowaną kolejkę z krawędziami grafu
 
+	Edge* edge;
+	for (int i = 1; i < vertexAmount; ++i) // Pętla wykonuje się n - 1 razy !!!
+	{
+		do
+		{
+			edge = queue->getFirstEdge();      // Pobieramy z kolejki krawędź
+			queue->pop();						// Krawędź usuwamy z kolejki
+		} while (set->FindSet(edge->v1) == set->FindSet(edge->v2));
 
-	stream >> word;
-	int edgeAmount = std::stoi(word);
-	cout << "Edge amount: " << edgeAmount << endl;
+		listMST->addEdge(edge);       // Dodajemy krawędź do drzewa
+		matrixMST->addEdge(edge);
+		weightMST += edge->weight;
 
-	queue = Queue(edgeAmount);
-
-	int loop = std::stoi(word);
-	int v1, v2, weight;
-	for (int i = 0; i < loop; ++i) {
-		stream >> word;
-		v1 = std::stoi(word);
-		stream >> word;
-		v2 = std::stoi(word);
-		stream >> word;
-		weight = std::stoi(word);
-
-		//add esges to matrix
-		queue.push(Edge(v1, v2, weight));
-		cout << v1 << " " << v2 << " " << weight << endl;
+		set->UnionSets(edge);     // Zbiory z wierzchołkami łączymy ze sobą
 	}
+
+	cout << "MST adjacency list representation:" << endl << endl;
+	listMST->print();
+	cout << endl << "MST adjacency matrix representation:" << endl << endl;
+	matrixMST->print();
+	cout << endl << endl << "Total MST weight: " << weightMST << endl;
 }
+
+
+

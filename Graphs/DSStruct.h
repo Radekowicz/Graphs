@@ -9,12 +9,12 @@ struct Node
 
 class DSStruct
 {
-private:
+public:
     Node* tableOfNodes;
 public:
     DSStruct(int n);
     ~DSStruct();
     void MakeSet(int v);
     int FindSet(int v);
-    void UnionSets(Edge e);
+    void UnionSets(Edge* edge);
 };

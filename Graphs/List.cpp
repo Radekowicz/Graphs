@@ -24,6 +24,15 @@ List::~List() {
 	}
 }
 
+ListElement* List::getElement(int n) {
+	current = head;
+	for (int i = 0; i < n; i++) {
+		current = current->next;
+	}
+	return current;
+}
+
+
 void List::push(int value, int weight) {
 	if (head == NULL) {
 		//jeśli head nie istnieje to stwórz nowy ListElement head z podaną wartścią i przyszpisz go do tail
@@ -208,7 +217,7 @@ bool List::elementExists(int value) {
 
 
 void List::display() {
-	if (head == NULL) cout << "List is empty" << endl;
+	if (head == NULL) cout << endl << endl;
 	else {
 		ListElement* current = head;
 		do {

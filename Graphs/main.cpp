@@ -1,4 +1,5 @@
 #include "Kruskal.h"
+#include "Prim.h"
 #include "AdjacencyMatrix.h"
 #include "AdjacencyList.h"
 
@@ -9,20 +10,23 @@ using namespace std;
 
 int main() {
 	
+	AdjacencyMatrix* matrix = new AdjacencyMatrix();
+	matrix->read("C:\\Users\\radek\\OneDrive\\Pulpit\\graph.txt");
+	cout << endl;
+	matrix->print();
+	cout << endl;
 	
-	
+	AdjacencyList* list = new AdjacencyList();
+	list->read("C:\\Users\\radek\\OneDrive\\Pulpit\\graph.txt");
+	cout << endl;
+	list->print();
 	cout << endl;
 
-	Kruskal kruskal = Kruskal();
+	Prim prim = Prim(list);
+	prim.makeMST(list);
 
-
-	/*
-	AdjacencyList list = AdjacencyList();
-	list.read("C:\\Users\\radek\\OneDrive\\Pulpit\\graph.txt");
-	cout << endl;
-	list.print();
-	*/
-	
+	Kruskal kruskal = Kruskal(matrix);
+	kruskal.makeMST(matrix);
 
 	return 0;
 }

@@ -4,17 +4,17 @@
 class Queue
 {
 public:
-    Edge* Heap;
+    Edge** Heap;
     int heapPos;
-    int n;
+    int vertexAmount;
     int edgeCount;
 public:
     Queue(int n);
-    Queue();
     ~Queue();
-    Edge getFirstEdge();
-    void push(Edge e);
+    Edge* getFirstEdge();
+    void push(Edge* edge);
     void pop();
     void print();
-    bool edgeExists(Edge edge);
+    void printTo(int n);
+    bool edgeExists(Edge* edge);
 };

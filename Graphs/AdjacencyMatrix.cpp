@@ -8,7 +8,12 @@ using namespace std;
 
 
 AdjacencyMatrix::AdjacencyMatrix() {
+}
 
+AdjacencyMatrix::AdjacencyMatrix(int vertexAmount) {
+	this->vertexAmount = vertexAmount;
+	createMatrix(vertexAmount);
+	fillMatrixWithZeros();
 }
 
 AdjacencyMatrix::~AdjacencyMatrix() {
@@ -75,7 +80,7 @@ void AdjacencyMatrix::read(std::string location) {
 
 		//add esges to matrix
 		addEdge(new Edge(v1, v2, weight));
-		cout << v1 << " " << v2 << " " << weight << endl;
+		//cout << v1 << " " << v2 << " " << weight << endl;
 	}
 }
 
