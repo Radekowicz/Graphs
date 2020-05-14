@@ -15,8 +15,10 @@ public:
 	~AdjacencyMatrix();
 	void createMatrix(int vertexAmount);
 	void addEdge(Edge* edge);
+	void addEdgeOne(Edge* edge);
 	void fillMatrixWithZeros();
 	void read(std::string location);
+	void readDirected(std::string location);
 	void print();
 	int toQueue(int i, int j);
 };
