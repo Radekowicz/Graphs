@@ -24,6 +24,9 @@ public:
 	void printList();
 	ListElement* getNeighbours(int n);
 	void deleteDuplicates();
+	void generateGraphUndirected(int vertexAmount, float percent);
+	void generateGraphDirected(int vertexAmount, float percent);
+	bool edgeExists(Edge* edge);
 
 };
 

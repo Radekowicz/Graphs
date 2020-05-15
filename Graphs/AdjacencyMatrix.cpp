@@ -3,6 +3,9 @@
 #include<iostream>
 #include<fstream>
 #include<string>
+#include<cstdlib>
+#include<ctime>
+
 
 using namespace std;
 
@@ -139,6 +142,95 @@ void AdjacencyMatrix::print() {
 int AdjacencyMatrix::toQueue(int i, int j) {
 	return(matrix[i][j]);
 }
+
+void AdjacencyMatrix::generateGraphUndirected(int vertexAmount, float percent) { //nieskierowne krawedzie 
+	this->vertexAmount = vertexAmount;
+
+	createMatrix(vertexAmount);
+	fillMatrixWithZeros();
+
+	int maxEdgeAmount = (vertexAmount * (vertexAmount- 1)/2 + vertexAmount);
+	edgeAmount = maxEdgeAmount * (percent / 100);
+	//cout << maxEdgeAmount << " " << edgeAmount << endl;
+
+	srand(time(NULL));
+	int randomV1;
+	int randomV2;
+	int randomWeight;
+
+	int loop = 0;
+	while (loop < edgeAmount) {
+		randomV1 = rand() % vertexAmount - 1 + 1;
+		//cout <<  randomV1 << " ";
+		randomV2 = rand() % vertexAmount - 1 + 1;
+		//cout << randomV1 << " ";
+		randomWeight = rand() % 9 + 1;
+		//cout << "weight:" << randomWeight << endl;
+		//cout << matrix[randomV1][randomV2] << endl;
+		if (matrix[randomV1][randomV2] == 0) {
+			Edge* edge = new Edge(randomV1, randomV2, randomWeight);
+			//edge->toString();
+			addEdge(edge);
+			//matrix[randomV1][randomV2] == randomWeight;
+			//cout << matrix[randomV1][randomV2];
+			loop++;
+		}
+		//cout << "matrix: " << matrix[randomV1][randomV2] << endl;
+	}
+}
+
+void AdjacencyMatrix::generateGraphDirected(int vertexAmount, float percent) { //skierowane krawedzie 
+	this->vertexAmount = vertexAmount;
+
+	createMatrix(vertexAmount);
+	fillMatrixWithZeros();
+
+	int maxEdgeAmount = (vertexAmount * (vertexAmount - 1));
+	edgeAmount = maxEdgeAmount * (percent / 100);
+	//cout << maxEdgeAmount << " " << edgeAmount << endl;
+
+	srand(time(NULL));
+	int randomV1;
+	int randomV2;
+	int randomWeight;
+
+	int loop = 0;
+	while (loop < edgeAmount) {
+		randomV1 = rand() % vertexAmount - 1 + 1;
+		//cout <<  randomV1 << " ";
+		randomV2 = rand() % vertexAmount - 1 + 1;
+		//cout << randomV1 << " ";
+		randomWeight = rand() % 9 + 1;
+		//cout << "weight:" << randomWeight << endl;
+		//cout << matrix[randomV1][randomV2] << endl;
+		if (matrix[randomV1][randomV2] == 0) {
+			Edge* edge = new Edge(randomV1, randomV2, randomWeight);
+			//edge->toString();
+			addEdgeOne(edge);
+			//matrix[randomV1][randomV2] == randomWeight;
+			//cout << matrix[randomV1][randomV2];
+			loop++;
+		}
+		//cout << "matrix: " << matrix[randomV1][randomV2] << endl;
+	}
+}
+
+AdjacencyList* AdjacencyMatrix::convertToList() {
+	AdjacencyList* list = new AdjacencyList(vertexAmount);
+
+	for (int i = 0; i < vertexAmount; ++i) {
+		for (int j = 0; j < vertexAmount; ++j) {
+			if (matrix[i][j] != 0) {
+				list->addEdgeOne(new Edge(i, j, matrix[i][j]));
+			}
+			
+		}
+	}
+	return list; 
+}
+
+
+
 
 
 

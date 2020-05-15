@@ -15,8 +15,6 @@ using namespace std;
 int main() {
 
 	
-
-	
 	Menu menu = Menu();
 
 	char option;
@@ -42,7 +40,7 @@ int main() {
 		}
 
 	} while (option != '0');
-	
+
 	
 
 	/*

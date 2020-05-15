@@ -204,14 +204,15 @@ void List::removeByValue(int value) {
 	}
 }
 
-bool List::elementExists(int value) {
+bool List::elementExists(int vertex) {
 	current = head;
 	for (int i = 0; i < size - 1; i++) {
-		if (current->vertex == value) return true;
+		if (current->vertex == vertex) return true;
 		current = current->next;
 	}
-	if (tail->vertex == value) return true;
-	return false;
+	if (size > 1)
+		if (tail->vertex == vertex) return true;
+	return false; 
 }
 
 

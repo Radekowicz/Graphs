@@ -30,7 +30,7 @@ public:
 
 	void display();
 
-	bool elementExists(int value);
+	bool elementExists(int vertex);
 
 	void delElem();
 

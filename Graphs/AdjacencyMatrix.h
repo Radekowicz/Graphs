@@ -1,6 +1,7 @@
 #pragma once
 #include "Edge.h"
 #include <string>
+#include "AdjacencyList.h"
 
 
 class AdjacencyMatrix
@@ -21,5 +22,8 @@ public:
 	void readDirected(std::string location);
 	void print();
 	int toQueue(int i, int j);
+	void generateGraphUndirected(int vertexAmount, float percent);
+	void generateGraphDirected(int vertexAmount, float percent);
+	AdjacencyList* convertToList();
 };
 

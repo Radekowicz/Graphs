@@ -43,11 +43,12 @@ void Prim::makeMST(AdjacencyList* list) {
             p = p->next;
         } while (p != NULL);
 
+
         do {
             edge = queue->getFirstEdge();            // Pobieramy krawędź z kolejki
             queue->pop();
             inQueue--;
-        } while (visited[edge->v2]); // Krawędź prowadzi poza drzewo?
+        } while (visited[edge->v2] == true); // Krawędź prowadzi poza drzewo?
 
 
         listMST->addEdge(edge);             // Dodajemy krawędź do drzewa rozpinającego
