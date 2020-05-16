@@ -229,7 +229,184 @@ AdjacencyList* AdjacencyMatrix::convertToList() {
 	return list; 
 }
 
+void AdjacencyMatrix::generateSpanningTree() {
 
+
+	List connected = List();
+	List NOTconnected = List();
+
+	int x = rand() % vertexAmount;
+	connected.push(x, NULL);
+
+	for (int i = 0; i < x; ++i) {
+		NOTconnected.push(i, NULL);
+	}
+	for (int i = x+1; i < vertexAmount; ++i) {
+		NOTconnected.push(i, NULL);
+	}
+	
+
+	srand(time(NULL));
+	int indexV1;
+	int indexV2;
+	int randomWeight;
+	int v1, v2;
+	while (NOTconnected.isEmpty() == false) {
+
+		//cout << "NOT connected: ";
+		//NOTconnected.display();
+		//cout << "connected: ";
+		//connected.display();
+
+		if (NOTconnected.size > 0) indexV1 = rand() % (NOTconnected.size);
+		else indexV1 = 0;
+
+		indexV2 = rand() % connected.size;
+		randomWeight = rand() % 9 + 1;
+		
+		v1 = NOTconnected.get(indexV1);
+		v2 = connected.get(indexV2);
+
+		//cout << "v1:" << v1 << "  v2:" << v2 << endl;
+
+		Edge* edge = new Edge(v1, v2, randomWeight);
+		addEdgeOne(edge);
+
+		//cout << endl;
+
+		NOTconnected.remove(indexV1);
+		//cout << "NOT connected: ";
+		//NOTconnected.display();
+
+		connected.pushBack(v1);
+		//cout << "connected: ";
+		//connected.display();
+
+		//cout << "is empty: " << NOTconnected.isEmpty() << endl << "---------------" << endl;
+	}
+}
+
+void AdjacencyMatrix::generateSpanningTreeUndirected() {
+
+
+	List connected = List();
+	List NOTconnected = List();
+
+	int x = rand() % vertexAmount;
+	connected.push(x, NULL);
+
+	for (int i = 0; i < x; ++i) {
+		NOTconnected.push(i, NULL);
+	}
+	for (int i = x + 1; i < vertexAmount; ++i) {
+		NOTconnected.push(i, NULL);
+	}
+
+
+	srand(time(NULL));
+	int indexV1;
+	int indexV2;
+	int randomWeight;
+	int v1, v2;
+	while (NOTconnected.isEmpty() == false) {
+
+		//cout << "NOT connected: ";
+		//NOTconnected.display();
+		//cout << "connected: ";
+		//connected.display();
+
+		if (NOTconnected.size > 0) indexV1 = rand() % (NOTconnected.size);
+		else indexV1 = 0;
+
+		indexV2 = rand() % connected.size;
+		randomWeight = rand() % 9 + 1;
+
+		v1 = NOTconnected.get(indexV1);
+		v2 = connected.get(indexV2);
+
+		//cout << "v1:" << v1 << "  v2:" << v2 << endl;
+
+		Edge* edge = new Edge(v1, v2, randomWeight);
+		addEdge(edge);
+
+		//cout << endl;
+
+		NOTconnected.remove(indexV1);
+		//cout << "NOT connected: ";
+		//NOTconnected.display();
+
+		connected.pushBack(v1);
+		//cout << "connected: ";
+		//connected.display();
+
+		//cout << "is empty: " << NOTconnected.isEmpty() << endl << "---------------" << endl;
+	}
+}
+
+
+void AdjacencyMatrix::generateGraphUndirected2(int vertexAmount, float percent) { //nieskierowne krawedzie 
+	this->vertexAmount = vertexAmount;
+
+	createMatrix(vertexAmount);
+	fillMatrixWithZeros();
+	generateSpanningTreeUndirected();
+	//print();
+		
+	int maxEdgeAmount = (vertexAmount * (vertexAmount - 1) / 2 - vertexAmount + 1);
+	edgeAmount = maxEdgeAmount * (percent / 100);
+	cout << 2 * maxEdgeAmount << " " << 2 * edgeAmount << endl << endl;
+
+	srand(time(NULL));
+	int randomV1;
+	int randomV2;
+	int randomWeight;
+
+	int loop = 0;
+	while (loop < edgeAmount) {
+		randomV1 = rand() % vertexAmount - 1 + 1;
+		randomV2 = rand() % vertexAmount - 1 + 1;
+		randomWeight = rand() % 9 + 1;
+
+		if (matrix[randomV1][randomV2] == 0 && randomV1 != randomV2) {
+			Edge* edge = new Edge(randomV1, randomV2, randomWeight);
+			addEdge(edge);
+
+			loop++;
+		}
+	}
+}
+
+void AdjacencyMatrix::generateGraphDirected2(int vertexAmount, float percent) { //skierowane krawedzie 
+	this->vertexAmount = vertexAmount;
+
+	createMatrix(vertexAmount);
+	fillMatrixWithZeros();
+	generateSpanningTree();
+	///print();
+
+	int maxEdgeAmount = (vertexAmount * (vertexAmount - 1) - vertexAmount + 1);
+	edgeAmount = maxEdgeAmount * (percent / 100);
+	cout << maxEdgeAmount << " " << edgeAmount << endl << endl;
+
+	srand(time(NULL));
+	int randomV1;
+	int randomV2;
+	int randomWeight;
+
+	int loop = 0;
+	while (loop < edgeAmount) {
+		randomV1 = rand() % vertexAmount - 1 + 1;
+		randomV2 = rand() % vertexAmount - 1 + 1;
+		randomWeight = rand() % 9 + 1;
+
+		if (matrix[randomV1][randomV2] == 0 && randomV1 != randomV2) {
+			Edge* edge = new Edge(randomV1, randomV2, randomWeight);
+			addEdgeOne(edge);
+
+			loop++;
+		}
+	}
+}
 
 
 

@@ -11,6 +11,9 @@ public:
 
 	void displayMenu(std::string info);
 
+	void displayMenu2(std::string info);
+
+
 	void MSTMenu();
 
 	void SciezkaMenu();

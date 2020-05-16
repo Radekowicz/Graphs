@@ -25,5 +25,10 @@ public:
 	void generateGraphUndirected(int vertexAmount, float percent);
 	void generateGraphDirected(int vertexAmount, float percent);
 	AdjacencyList* convertToList();
+	void generateSpanningTree();
+	void generateSpanningTreeUndirected();
+	void generateGraphUndirected2(int vertexAmount, float percent);
+	void generateGraphDirected2(int vertexAmount, float percent);
+
 };
 

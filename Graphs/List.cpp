@@ -132,12 +132,18 @@ void List::delElem() {
 	size--;
 }
 
-
 void List::remove(int index) {
 
 	//sprawdź czy istnieje element o wybranym indexie
 	if (index < 0 || index >= size) {
 		cout << "Index does not exist" << endl;
+	}
+
+	else if (index == 0 && head->next == NULL) {
+		head = NULL;
+		tail = NULL;
+		current = NULL;
+		size = 0;
 	}
 
 	else if (index == 0) {
@@ -178,8 +184,10 @@ void List::remove(int index) {
 }
 
 void List::removeByValue(int value) {
+
 	//sprawdzamy czy wartość nie leży w głowie
 	if (head->vertex == value) {
+
 		current = head;
 		head = current->next;
 		head->previous = NULL;
@@ -214,8 +222,6 @@ bool List::elementExists(int vertex) {
 		if (tail->vertex == vertex) return true;
 	return false; 
 }
-
-
 
 void List::display() {
 	if (head == NULL) cout << endl << endl;
@@ -260,7 +266,6 @@ void List::read2(std::string location) {
 	}
 }
 
-
 void List::generateList(int size) {
 	for (int i = 0; i < List::size; i++) {
 		if (head != NULL) {
@@ -274,4 +279,47 @@ void List::generateList(int size) {
 		/* generate secret number between 1 and 100: */
 		pushFront(rand() % 100 + 1);
 	}
+}
+
+bool List::isEmpty() {
+	if (head == NULL) return true;
+	return false;
+}
+
+int List::get(int index) {
+	int value;
+
+	if (index < 0 || index >= size) {
+		cout << "Index does not exist" << endl;
+	}
+
+	else if (index == 0) {
+		return head->vertex;
+	}
+
+	else if (index == size - 1) {
+		return tail->vertex;
+	}
+
+	//sprawdź w której połowie listy znajduje się wybrany index
+	else if (index <= size / 2) {
+		current = head;
+
+		//szukanie elementu do usunięcia
+		for (int i = 0; i < index; i++) {
+			current = current->next;
+		}
+		return current->vertex;
+	}
+
+	else {
+		current = tail;
+
+		//szukanie elementu do usunięcia
+		for (int i = size; i > index + 1; i--) {
+			current = current->previous;
+		}
+		return current->vertex;
+	}
+	 
 }

@@ -14,9 +14,46 @@ using namespace std;
 
 int main() {
 
+	/*
+	List list = List();
+	list.pushBack(3);
+	cout << list.get(0) << endl;
+	cout << list.head->vertex << endl;
+	list.remove(0);
+	cout << list.isEmpty();
+	*/
 	
+	/*
+	AdjacencyMatrix* matrix = new AdjacencyMatrix(4);
+	matrix->generateGraphDirected2(30, 80);
+	//matrix->generateSpanningTreeUndirected();
+	matrix->print();
 
+	AdjacencyList* list = matrix->convertToList();
+	list->print();
+
+
+	BellmanFord bellmanFord = BellmanFord(list);
+	bellmanFord.makeBellmanFord(29);
+	bellmanFord.print();
+
+	*/
+
+	/*
+	//works
+	Dijkstra dijkstra = Dijkstra(list);
+	dijkstra.makeDijkstra(3);
+	dijkstra.print();
+	*/
+
+	//Kruskal kruskal = Kruskal(matrix);
+	//kruskal.makeMST(matrix);
+
+	//Prim prim = Prim(list);
+	//prim.makeMST(list);
 	
+	
+	/*
 	Menu menu = Menu();
 
 	char option;
@@ -43,32 +80,11 @@ int main() {
 
 	} while (option != '0');
 	
+	*/
 	
 
-	/*
-	* list = new AdjacencyList();
-	list->generateGraphUndirected(4, 100);
-	cout << endl;
-	list->print();
-	cout << endl;
-	*/
-
-
-
-	/*
-	AdjacencyMatrix* matrix = new AdjacencyMatrix();
-	matrix->generateGraphUndirected(7, 100);
-	cout << endl;
-	//matrix->print();
-	cout << endl;
 	
-	AdjacencyList* list = new AdjacencyList();
-	list->generateGraphUndirected(5, 99);
-	list->print();
 
-	Prim* prim = new Prim(list);
-	prim->makeMST(list);
-	*/
 
 	return 0;
 }

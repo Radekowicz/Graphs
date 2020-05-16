@@ -4,6 +4,7 @@
 #include "ListElement.h"
 
 class List {
+public:
 
 	ListElement* head;
 	ListElement* tail;
@@ -42,5 +43,8 @@ public:
 
 	ListElement* getElement(int n);
 
+	bool isEmpty();
+
+	int get(int i);
 };
 
