@@ -16,7 +16,7 @@ Kruskal::Kruskal(AdjacencyMatrix* matrix) {
 }
 
 void Kruskal::makeQueue(AdjacencyMatrix* matrix) {
-	queue = new Queue(matrix->edgeAmount);
+	queue = new Queue(2*matrix->edgeAmount);
 
 	Edge* edge;
 	for (int i = 0; i < matrix->vertexAmount; ++i) {
@@ -34,7 +34,7 @@ void Kruskal::makeQueue(AdjacencyMatrix* matrix) {
 
 void Kruskal::makeMST(AdjacencyMatrix* matrix) {
 	listMST = new AdjacencyList(vertexAmount);
-	matrixMST = new AdjacencyMatrix(vertexAmount);
+	matrixMST = new AdjacencyMatrix(vertexAmount); 
 
 
 	for (int i = 0; i < vertexAmount; ++i) {
@@ -49,6 +49,7 @@ void Kruskal::makeMST(AdjacencyMatrix* matrix) {
 		do
 		{
 			edge = queue->getFirstEdge();      // Pobieramy z kolejki krawędź
+			//edge->toString();
 			queue->pop();						// Krawędź usuwamy z kolejki
 		} while (set->FindSet(edge->v1) == set->FindSet(edge->v2));
 

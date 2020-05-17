@@ -19,7 +19,7 @@ void count(int vertexAmount, int percent) {
 	double sumTime = 0;
 	AdjacencyMatrix* matrix = new AdjacencyMatrix();
 	AdjacencyList* list;
-	int x = 20;
+	int x = 1;
 
 	for (int i = 0; i < x; i++) {
 		matrix->generateGraphUndirected2(vertexAmount, percent);
@@ -28,6 +28,7 @@ void count(int vertexAmount, int percent) {
 		time.start();
 		Kruskal kruskal = Kruskal(matrix);
 		kruskal.makeMST(matrix);
+		//kruskal.print();
 
 		sumTime += time.stopAndPrint2();
 	}
@@ -37,6 +38,8 @@ void count(int vertexAmount, int percent) {
 
 
 int main() {
+
+	
 	/*
 	int x = 20;
 
@@ -46,25 +49,26 @@ int main() {
 	count(300, x);
 	count(500, x);
 	count(800, x);
-	//count(1000, x);
+	count(1000, x);
 	*/
 
 
 	
-
-
+	//PRIM
+	
 	//parametry grafu
-	int vertexAmount = 5;
-	int percent = 40;
+	int vertexAmount = 400;
+	int percent = 80;
 
 	AdjacencyMatrix* matrix = new AdjacencyMatrix(vertexAmount);
 	//matrix->read("C:\\Users\\radek\\OneDrive\\Pulpit\\graph.txt");
 	matrix->generateGraphUndirected2(vertexAmount, percent);
-	matrix->print();
+	AdjacencyList* list = matrix->convertToList();
+	
+	Prim prim = Prim(list);
+	prim.makeMST(list);
+	prim.print();
 
-	Kruskal kruskal = Kruskal(matrix);
-	kruskal.makeMST(matrix);
-	kruskal.print();
 
 	/*
 	AdjacencyList* list = new AdjacencyList();
