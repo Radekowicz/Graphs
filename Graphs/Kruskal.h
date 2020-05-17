@@ -23,5 +23,6 @@ public:
 	Kruskal(AdjacencyMatrix* matrix);
 	void makeQueue(AdjacencyMatrix* matrix);
 	void makeMST(AdjacencyMatrix* matrix);
+	void print();
 };
 

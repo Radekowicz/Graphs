@@ -19,8 +19,8 @@ Prim::Prim(AdjacencyList* list) {
 void Prim::makeMST(AdjacencyList* list) {
     Edge* edge;
 
-	for (int i = 0; i < vertexAmount; ++i)
-		visited[i] = false;       // Inicjujemy tablicę odwiedzin
+    for (int i = 0; i < vertexAmount; ++i)
+        visited[i] = false;       // Inicjujemy tablicę odwiedzin
 
     int v = 0;                         // Wierzchołek startowy
     visited[v] = true;          // Oznaczamy go jako odwiedzonego
@@ -43,12 +43,11 @@ void Prim::makeMST(AdjacencyList* list) {
             p = p->next;
         } while (p != NULL);
 
-
         do {
             edge = queue->getFirstEdge();            // Pobieramy krawędź z kolejki
             queue->pop();
-            inQueue--;
-        } while (inQueue > 0); // Krawędź prowadzi poza drzewo?
+          //  inQueue--;
+        } while (visited[edge->v2] == true); // Krawędź prowadzi poza drzewo?
 
 
         listMST->addEdge(edge);             // Dodajemy krawędź do drzewa rozpinającego
@@ -58,12 +57,13 @@ void Prim::makeMST(AdjacencyList* list) {
         v = edge->v2;
 
     }
+}
 
+void Prim::print() {
     cout << "MST adjacency list representation:" << endl << endl;
     listMST->print();
     cout << endl << "MST adjacency matrix representation:" << endl << endl;
     matrixMST->print();
     cout << endl << endl << "Total MST weight: " << weightMST << endl;
 }
-
 

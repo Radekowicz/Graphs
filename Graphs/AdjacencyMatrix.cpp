@@ -354,7 +354,7 @@ void AdjacencyMatrix::generateGraphUndirected2(int vertexAmount, float percent) 
 		
 	int maxEdgeAmount = (vertexAmount * (vertexAmount - 1) / 2 - vertexAmount + 1);
 	edgeAmount = maxEdgeAmount * (percent / 100);
-	cout << 2 * maxEdgeAmount << " " << 2 * edgeAmount << endl << endl;
+	//cout << 2 * maxEdgeAmount << " " << 2 * edgeAmount << endl << endl;
 
 	srand(time(NULL));
 	int randomV1;
@@ -386,7 +386,7 @@ void AdjacencyMatrix::generateGraphDirected2(int vertexAmount, float percent) { 
 
 	int maxEdgeAmount = (vertexAmount * (vertexAmount - 1) - vertexAmount + 1);
 	edgeAmount = maxEdgeAmount * (percent / 100);
-	cout << maxEdgeAmount << " " << edgeAmount << endl << endl;
+	//cout << maxEdgeAmount << " " << edgeAmount << endl << endl;
 
 	srand(time(NULL));
 	int randomV1;

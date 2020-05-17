@@ -144,7 +144,6 @@
     <ClCompile Include="Dijkstra.cpp" />
     <ClCompile Include="DSStruct.cpp" />
     <ClCompile Include="Edge.cpp" />
-    <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Kruskal.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="ListElement.cpp" />
@@ -152,6 +151,7 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Prim.cpp" />
     <ClCompile Include="Queue.cpp" />
+    <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdjacencyList.h" />
@@ -167,6 +167,7 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Prim.h" />
     <ClInclude Include="Queue.h" />
+    <ClInclude Include="Time.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -16,7 +16,7 @@ Kruskal::Kruskal(AdjacencyMatrix* matrix) {
 }
 
 void Kruskal::makeQueue(AdjacencyMatrix* matrix) {
-	queue = new Queue(2 * matrix->edgeAmount);
+	queue = new Queue(matrix->edgeAmount);
 
 	Edge* edge;
 	for (int i = 0; i < matrix->vertexAmount; ++i) {
@@ -59,6 +59,9 @@ void Kruskal::makeMST(AdjacencyMatrix* matrix) {
 		set->UnionSets(edge);     // Zbiory z wierzchołkami łączymy ze sobą
 	}
 
+}
+
+void Kruskal::print() {
 	cout << "MST adjacency list representation:" << endl << endl;
 	listMST->print();
 	cout << endl << "MST adjacency matrix representation:" << endl << endl;

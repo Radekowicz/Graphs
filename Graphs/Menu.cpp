@@ -89,6 +89,8 @@ void Menu::MSTMenu()
 		case '4': //tutaj Prim
 		{	
 			Prim prim = Prim(listGraph);
+			prim.makeMST(listGraph);
+			prim.print();
 			break;
 		}
 
@@ -96,6 +98,7 @@ void Menu::MSTMenu()
 		{
 			Kruskal kruskal = Kruskal(matrixGraph);
 			kruskal.makeMST(matrixGraph);
+			kruskal.print();
 			break;
 		}
 

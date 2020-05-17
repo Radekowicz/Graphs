@@ -5,6 +5,7 @@
 #include "Dijkstra.h"
 #include "BellmanFord.h"
 #include "Menu.h"
+#include "Time.h"
 
 #include<iostream>
 #include<fstream>
@@ -12,46 +13,69 @@
 #include<string>
 using namespace std;
 
-int main() {
+//teraz liczymy bellmana
+void count(int vertexAmount, int percent) {
+	Time time = Time();
+	double sumTime = 0;
+	AdjacencyMatrix* matrix = new AdjacencyMatrix();
+	AdjacencyList* list;
+	int x = 20;
 
+	for (int i = 0; i < x; i++) {
+		matrix->generateGraphUndirected2(vertexAmount, percent);
+		//list = matrix->convertToList();
+
+		time.start();
+		Kruskal kruskal = Kruskal(matrix);
+		kruskal.makeMST(matrix);
+
+		sumTime += time.stopAndPrint2();
+	}
+
+	cout << sumTime / x << endl;
+}
+
+
+int main() {
 	/*
-	List list = List();
-	list.pushBack(3);
-	cout << list.get(0) << endl;
-	cout << list.head->vertex << endl;
-	list.remove(0);
-	cout << list.isEmpty();
+	int x = 20;
+
+	count(50, x);
+	count(100, x);
+	count(200, x);
+	count(300, x);
+	count(500, x);
+	count(800, x);
+	//count(1000, x);
 	*/
+
+
 	
-	/*
-	AdjacencyMatrix* matrix = new AdjacencyMatrix(4);
-	matrix->generateGraphDirected2(30, 80);
-	//matrix->generateSpanningTreeUndirected();
+
+
+	//parametry grafu
+	int vertexAmount = 5;
+	int percent = 40;
+
+	AdjacencyMatrix* matrix = new AdjacencyMatrix(vertexAmount);
+	//matrix->read("C:\\Users\\radek\\OneDrive\\Pulpit\\graph.txt");
+	matrix->generateGraphUndirected2(vertexAmount, percent);
 	matrix->print();
 
-	AdjacencyList* list = matrix->convertToList();
-	list->print();
-
-
-	BellmanFord bellmanFord = BellmanFord(list);
-	bellmanFord.makeBellmanFord(29);
-	bellmanFord.print();
-
-	*/
+	Kruskal kruskal = Kruskal(matrix);
+	kruskal.makeMST(matrix);
+	kruskal.print();
 
 	/*
-	//works
-	Dijkstra dijkstra = Dijkstra(list);
-	dijkstra.makeDijkstra(3);
-	dijkstra.print();
+	AdjacencyList* list = new AdjacencyList();
+	list->read("C:\\Users\\radek\\OneDrive\\Pulpit\\graph.txt");
+	list->print();
+
+	Prim prim = Prim(list);
+	prim.makeMST(list);
 	*/
 
-	//Kruskal kruskal = Kruskal(matrix);
-	//kruskal.makeMST(matrix);
 
-	//Prim prim = Prim(list);
-	//prim.makeMST(list);
-	
 	
 	/*
 	Menu menu = Menu();
@@ -79,7 +103,6 @@ int main() {
 		}
 
 	} while (option != '0');
-	
 	*/
 	
 
