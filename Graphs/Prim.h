@@ -19,7 +19,6 @@ public:
 
 
 	Prim(AdjacencyList* list);
-	Prim();
 	void makeMST(AdjacencyList* list);
 	void print();
 };

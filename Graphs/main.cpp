@@ -13,31 +13,75 @@
 #include<string>
 using namespace std;
 
-/*
+//teraz liczymy bellmana
 void count(int vertexAmount, int percent) {
 	Time time = Time();
 	double sumTime = 0;
 	AdjacencyMatrix* matrix = new AdjacencyMatrix();
 	AdjacencyList* list;
 	int x = 1;
-	Prim prim;
 
 	for (int i = 0; i < x; i++) {
 		matrix->generateGraphUndirected2(vertexAmount, percent);
-		list = matrix->convertToList();
+		//list = matrix->convertToList();
 
 		time.start();
-		
+		Kruskal kruskal = Kruskal(matrix);
+		kruskal.makeMST(matrix);
+		//kruskal.print();
+
 		sumTime += time.stopAndPrint2();
 	}
 
 	cout << sumTime / x << endl;
 }
-*/
 
 
 int main() {
 
+	
+	/*
+	int x = 20;
+
+	count(50, x);
+	count(100, x);
+	count(200, x);
+	count(300, x);
+	count(500, x);
+	count(800, x);
+	count(1000, x);
+	*/
+
+
+	
+	//PRIM
+	
+	//parametry grafu
+	int vertexAmount = 400;
+	int percent = 80;
+
+	AdjacencyMatrix* matrix = new AdjacencyMatrix(vertexAmount);
+	//matrix->read("C:\\Users\\radek\\OneDrive\\Pulpit\\graph.txt");
+	matrix->generateGraphUndirected2(vertexAmount, percent);
+	AdjacencyList* list = matrix->convertToList();
+	
+	Prim prim = Prim(list);
+	prim.makeMST(list);
+	prim.print();
+
+
+	/*
+	AdjacencyList* list = new AdjacencyList();
+	list->read("C:\\Users\\radek\\OneDrive\\Pulpit\\graph.txt");
+	list->print();
+
+	Prim prim = Prim(list);
+	prim.makeMST(list);
+	*/
+
+
+	
+	/*
 	Menu menu = Menu();
 
 	char option;
@@ -63,6 +107,11 @@ int main() {
 		}
 
 	} while (option != '0');
+	*/
 	
+
+	
+
+
 	return 0;
 }
