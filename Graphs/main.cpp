@@ -39,6 +39,7 @@ void count(int vertexAmount, int percent) {
 
 int main() {
 
+
 	
 	/*
 	int x = 20;
