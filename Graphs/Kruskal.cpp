@@ -29,7 +29,7 @@ void Kruskal::makeQueue(AdjacencyMatrix* matrix) {
 			}
 		}
 	}
-	cout << endl;
+	//cout << endl;
 }
 
 void Kruskal::makeMST(AdjacencyMatrix* matrix) {

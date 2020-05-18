@@ -217,15 +217,18 @@ void AdjacencyMatrix::generateGraphDirected(int vertexAmount, float percent) { /
 
 AdjacencyList* AdjacencyMatrix::convertToList() {
 	AdjacencyList* list = new AdjacencyList(vertexAmount);
+	int edgeAmount = 0;
 
 	for (int i = 0; i < vertexAmount; ++i) {
 		for (int j = 0; j < vertexAmount; ++j) {
 			if (matrix[i][j] != 0) {
 				list->addEdgeOne(new Edge(i, j, matrix[i][j]));
+				edgeAmount++;
 			}
 			
 		}
 	}
+	list->edgeAmount = edgeAmount;
 	return list; 
 }
 

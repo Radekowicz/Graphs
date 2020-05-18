@@ -8,6 +8,8 @@
 
 using namespace std;
 
+Prim::Prim() {}
+
 Prim::Prim(AdjacencyList* list) {
 	vertexAmount = list->vertexAmount;
 	weightMST = 0;
@@ -33,21 +35,27 @@ void Prim::makeMST(AdjacencyList* list) {
         queue = new Queue(list->edgeAmount);
         p = list->getNeighbours(v);  // Przeglądamy listę sąsiadów
 
-        do {
-            if (visited[p->vertex] == false)    // Jeśli sąsiad jest nieodwiedzony, 
-            {
-                edge = new Edge(v, p->vertex, p->weight); // to tworzymy krawędź
-                queue->push(edge);            // Dodajemy ją do kolejki priorytetowej
-                inQueue++;
-            }
-            p = p->next;
-        } while (p != NULL);
+        while (p != NULL) {
+            //if (p != NULL) {
+                if (visited[p->vertex] == false)    // Jeśli sąsiad jest nieodwiedzony, 
+                {
+                    edge = new Edge(v, p->vertex, p->weight); // to tworzymy krawędź
+                    queue->push(edge);            // Dodajemy ją do kolejki priorytetowej
+                    //cout << "pushed edge: ";
+                   // edge->toString();
+                    inQueue++;
+                }
+                p = p->next;
+           // }
+        }
 
-        do {
+       do {
             edge = queue->getFirstEdge();            // Pobieramy krawędź z kolejki
             queue->pop();
+           // cout << "popped edge: ";
+            //edge->toString();
           //  inQueue--;
-        } while (visited[edge->v2] == true); // Krawędź prowadzi poza drzewo?
+         } while (visited[edge->v2] == true); // Krawędź prowadzi poza drzewo?
 
 
         listMST->addEdge(edge);             // Dodajemy krawędź do drzewa rozpinającego
